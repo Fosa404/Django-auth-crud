@@ -1,0 +1,274 @@
+:root {
+    --color-primary: #2ea3f2 ;
+    /* --color-secondary: ; */
+    --color-text: #666;
+    --font-main: Akira;
+    --font-text: explosive;
+}
+
+@font-face {
+    font-family: Akira;
+    src: url(../fonts/akira.otf);
+}
+
+
+@font-face {
+    font-family: coolvetica;
+    src: url(../fonts/coolvetica.otf);
+}
+
+/* Main settings */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--color-text);
+}
+
+
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-main);
+}
+
+
+/* End main settings */
+
+
+
+/* Layout settings */
+
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+}
+
+nav ul{
+
+    height: 60px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+
+nav ul li a{
+    text-decoration: none;
+    padding: 5px;
+    color: antiquewhite;
+    font-family: coolvetica;
+    text-transform: uppercase;
+}
+
+nav ul li a:hover{
+
+    color: var(--color-text);
+}
+
+main{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 20px;
+    width: 100vw;
+    font-family: var(--font-main);
+}
+
+.list{
+
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    border: 1px solid var(--color-text);
+    padding: 20px;
+}
+
+.list li{
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.list hr{
+
+    
+    height: 1px;
+    width: 100%;
+    border: 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), #2ea4f2dd, rgba(0, 0, 0, 0));
+}
+
+.list li span .btn-detail{
+    text-decoration: none;
+    padding: 10px;
+    color: var(--color-primary);
+    
+}
+
+.list li span .btn-edit{
+    text-decoration: none;
+    padding: 10px;
+    color: var(--color-text);
+    cursor: pointer;
+    
+}
+
+.list li span .btn-delete{
+    text-decoration: none;
+    padding: 10px;
+    color: red;
+    
+}
+
+.list li span .btn-detail:hover{
+    color: #73c1f6;
+}
+
+.list li span .btn-edit:hover{
+    color: #949191;
+}
+
+.list li span .btn-delete:hover{
+    color: rgb(249, 129, 129);
+}
+
+.search{
+    margin: 15px;
+    width: 50vw;  
+}
+
+.search-bar{
+    padding: 10px;
+    width: 80%;
+    border-radius: 10px;
+    margin: 0 10px;
+    font-family: coolvetica ;
+    font-size: 16px;
+}
+
+.btn-search{
+    width: 15%;
+    height: 35px;
+    border: none;
+    border-radius: 10px;
+    text-transform: uppercase;
+    background-color: var(--color-primary);
+    color: white;
+    font-family: coolvetica;
+    cursor: pointer;
+}
+
+.letters{
+    margin: 30px 5px 5px;
+}
+
+.aux{
+
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.aux a{
+
+    margin: 30px 10px 20px;
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+.list-detail{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: var(--color-text);
+    /* width: 300px; */
+    border: 1px solid var(--color-text);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: coolvetica;
+    
+}
+
+.list-detail li{
+
+    margin: 10px;
+    color: white;
+    font-size: x-large;
+}
+
+.aux-detail{
+    width: 25%;
+    display: flex;
+    justify-content: flex-start
+}
+
+.aux-detail a{
+
+    margin: 10px 20px;
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+.messages{
+    list-style: none;
+}
+
+.messages li{
+    
+    color: rgb(64, 163, 64);
+}
+
+
+/* End layout settings */
+
+/* Index settings */
+
+.cards{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+.card{
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    background-color: var(--color-primary);
+    margin: 10px;
+}
+
+.card a{
+
+    text-decoration: none;
+    color: white;
+}
+
+.card:hover{
+
+    background-color: #73c1f6;
+}

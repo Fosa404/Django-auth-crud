@@ -1,0 +1,29 @@
+{% extends 'layout/base.html' %}
+
+{% block 'styles' %}
+{% load static %}
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
+
+{% block 'title' %} Crear contacto {% endblock %}
+
+{% block 'content' %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li {% if message.tag %}{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<span class="aux-detail"><a href="{% url 'todo' %}">Volver atras</a></span>
+
+<form action="{% url 'todo_create' %}" method="POST">
+{% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input class="btn-edit" type="submit" value="Enviar">
+</form>
+{% endblock %}

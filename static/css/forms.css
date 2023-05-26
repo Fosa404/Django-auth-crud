@@ -1,0 +1,51 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-family: coolvetica;
+    font-size: x-large;
+    
+}
+
+table tbody{
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+}
+
+tr{
+    padding: 15px;
+}
+
+input {
+    font-family: coolvetica;
+    width: 100%;
+    border: none;
+    margin-left: 10px;
+    border-bottom: 1px solid var(--color-primary);
+    font-size: x-large;
+}
+
+textarea{
+
+    margin-left: 10px;
+    font-family: coolvetica;
+    font-size: large;
+}
+
+form .btn-edit {
+    width: auto;
+    background-color: var(--color-primary);
+    color: aliceblue;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+
+
+

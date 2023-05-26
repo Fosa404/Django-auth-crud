@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+
+{% block 'title' %} Tarea {{ todo.title }} {% endblock %}
+
+{% block 'content' %}
+
+<span class="aux-detail"><a href="{% url 'todo' %}">Volver atras</a></span>
+
+    <ul class="list-detail"> 
+        <li>Titulo: {{ todo.title }}</li>
+        <li>Descripcion: {{ todo.description }}</li>
+        <li>Fecha: {{ todo.date }}</li>
+        <li>Fecha de finalizacion estimada: {{ todo.estimated_end }}</li>
+        <li>Prioridad: {{ todo.priority }}</li>
+    </ul>
+
+{% endblock %}
