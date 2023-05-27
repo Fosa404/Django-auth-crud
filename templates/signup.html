@@ -1,10 +1,18 @@
 {% extends 'layout/base.html '%}
 
 {% block 'title' %}Sign Up{% endblock %}
+{% block 'styles' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
 
 {% block 'content' %}
-    <form action="#" method="post">
-        {{form.as_table}}
+    <form action="{% url  'signup' %}" method="post" class="signup">
+        {% csrf_token %}
+        <table class="signup">
+            {{form.as_table}}
+        </table>
+        <input type="submit" value="Registrarse" class="btn-edit">
     </form>    
 
 {% endblock %}

@@ -45,6 +45,12 @@ form .btn-edit {
 }
 
 
+.signup table.signup tbody tr{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 
 
