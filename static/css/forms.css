@@ -28,6 +28,11 @@ input {
     font-size: x-large;
 }
 
+input:focus{
+    outline: none;
+    background-color: rgba(234, 233, 233, 0.236);
+}
+
 textarea{
 
     margin-left: 10px;
@@ -52,6 +57,17 @@ form .btn-edit {
     align-items: center;
 }
 
+.signup .helptext{
+    width: 100%;
+    text-align: center;
+    font-size: small;
+}
 
+.errorlist li{
+    list-style: none;
+    font-size: small;
+    color: red;
+    padding: 10px;
+}
 
 
