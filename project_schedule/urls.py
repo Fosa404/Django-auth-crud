@@ -23,5 +23,7 @@ urlpatterns = [
     path('contact/', include('contact.urls')),
     path ('todo/', include('todo.urls')),
     path('', views.index, name='index'),
-    path('signup/', views.signup, name="signup")
+    path('signup/', views.signup, name="signup"),
+    path('signin/', views.signin, name="signin"),
+    path('signuot/', views.signout, name='signout')
 ]

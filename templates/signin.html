@@ -1,0 +1,29 @@
+{% extends 'layout/base.html '%}
+
+{% block 'title' %}Sign Up{% endblock %}
+{% block 'styles' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+{% endblock %}
+
+{% block 'content' %}
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="signin-message">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+    <form action="{% url  'signin' %}" method="post" class="signup">
+        {% csrf_token %}
+        <table class="signup">
+            {{form.as_table}}
+        </table>
+        <input type="submit" value="Iniciar sesión" class="btn-edit">
+        <a href="{% url 'signup' %}" class="registrer">Registrarse</a> 
+    </form>   
+
+{% endblock %}

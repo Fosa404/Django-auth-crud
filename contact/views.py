@@ -4,19 +4,24 @@ from .forms import ContacForm
 from django.http import HttpResponse
 from django.contrib import messages
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 def index(request, letter = None):
-    if letter != None:
-        contacts = Contact.objects.filter(name__istartswith=letter)
-    else:
-        contacts = Contact.objects.filter(name__contains=request.GET.get('search', ''))
-    context = {
+    if request.user.is_authenticated:
+    # user_contacts = Contact.objects.filter(user=request.user)
+        if letter != None:
+            contacts = Contact.objects.filter(name__istartswith=letter, user=request.user)
+        else:
+            contacts = Contact.objects.filter(name__contains=request.GET.get('search', ''), user=request.user)
+            print(contacts)
+        context = {
 
-        'contacts': contacts
-    }
-    return render (request, 'contact/index.html', context)
+            'contacts': contacts
+        }
+        return render (request, 'contact/index.html', context)
+    return redirect('index')
 
-
+@login_required
 def view(request,id):
     contact = Contact.objects.get(id=id)
     context = {
@@ -25,7 +30,7 @@ def view(request,id):
 
     return render(request, 'contact/detail.html', context)
 
-
+@login_required
 def edit(request, id):
     contact = Contact.objects.get(id=id)
     if request.method == 'GET':
@@ -48,7 +53,7 @@ def edit(request, id):
         messages.success(request, 'Contacto actualizado correctamente')
         return render(request, 'contact/edit.html', context)
        
-    
+@login_required  
 def create(request):
     if request.method == 'GET':
         form = ContacForm( )
@@ -61,11 +66,20 @@ def create(request):
     if request.method == 'POST':
         form = ContacForm(request.POST)
         if form.is_valid:
-            form.save()
-        messages.success(request, "Contacto creado satisfactoriamente")
-        return redirect("contact")
+            try:
+                new_contact = form.save(commit=False)
+                new_contact.user = request.user
+                new_contact.save()
+                return redirect("contact")
+            except ValueError:
+                messages.error(request, "Introduzca los datos correctamente")
+                context = {
+                    'form': form
+                }
+                return render(request, 'contact/create.html', context)
+        
     
-
+@login_required
 def delete(request, id):
     contact = Contact.objects.get(id=id)
     contact.delete()

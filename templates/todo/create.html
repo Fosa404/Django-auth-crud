@@ -12,7 +12,7 @@
 {% if messages %}
 <ul class="messages">
     {% for message in messages %}
-    <li {% if message.tag %}{% endif %}>{{ message }}</li>
+    <li class="create-message">{{ message }}</li>
     {% endfor %}
 </ul>
 {% endif %}

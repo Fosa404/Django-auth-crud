@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from datetime import date
 
@@ -10,6 +11,7 @@ class Contact(models.Model):
     company = models.CharField(max_length=50, blank=True, null=True)
     date = models.DateField(default=date.today)
     notes = models.TextField(blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
     def __str__(self) -> str:
         return self.name

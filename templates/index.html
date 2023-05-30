@@ -5,11 +5,15 @@
 {% block 'content' %}
     <h1>Bienvenido a tu gestor personal</h1>
     <div class="cards">
-        <div class="card">
-            <a href="{% url 'todo' %}">TAREAS</a>
-        </div>
-        <div class="card">
-            <a href="{% url 'contact' %}">CONTACTOS</a>
-        </div>
+        <a href="{% url 'todo' %}" class="index">
+            <div class="card">
+                <span>TAREAS</span> 
+            </div>
+        </a>
+        <a href="{% url 'contact' %}" class="index">     
+            <div class="card">
+                <span>CONTACTOS</span> 
+            </div>
+        </a>
     </div>
 {% endblock %}

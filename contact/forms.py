@@ -6,7 +6,7 @@ from .models import Contact
 class ContacForm(ModelForm):
     class Meta:
         model = Contact
-        exclude = ('date',)
+        exclude = ('date', 'user',)
 
     
 

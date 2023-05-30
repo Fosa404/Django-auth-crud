@@ -4,9 +4,9 @@
         <li><a href="{% url 'contact' %}">Contactos</a></li>
         <li><a href="{% url 'todo' %}">Tareas</a></li>
         {% if user.is_authenticated %}
-        <li><a href="#">Cerrar sesion</a></li>
+        <li><a href="{% url 'signout' %}">Cerrar sesion</a></li>
         {% else %}
-        <li><a href="#">Iniciar sesion</a></li>
+        <li><a href="{% url 'signin' %}">Iniciar sesion</a></li>
         {% endif %}
     </ul>
 </nav>
