@@ -3,7 +3,7 @@
     /* --color-secondary: ; */
     --color-text: #666;
     --font-main: Akira;
-    --font-text: explosive;
+    --font-text: coolvetica;
 }
 
 @font-face {
@@ -112,6 +112,7 @@ main{
     display: flex;
     justify-content: space-between;
     padding: 15px;
+    font-family: coolvetica;
 }
 
 .list hr{
@@ -127,7 +128,7 @@ main{
     text-decoration: none;
     padding: 10px;
     color: var(--color-primary);
-    
+    font-family: var(--font-main);
 }
 
 .list li span .btn-edit{
@@ -135,14 +136,14 @@ main{
     padding: 10px;
     color: var(--color-text);
     cursor: pointer;
-    
+    font-family: var(--font-main);
 }
 
 .list li span .btn-delete{
     text-decoration: none;
     padding: 10px;
     color: red;
-    
+    font-family: var(--font-main);
 }
 
 .list li span .btn-detail:hover{

@@ -9,5 +9,13 @@ class TodoForm(ModelForm):
         widgets = {
             'estimated_end': DateInput(attrs={'type':'date'}),
         }
+        labels = {
+            'title': 'Título',
+            'description': 'Descripción',
+            'date': 'Fecha',
+            'estimated_end': 'Finalización estimada',
+            'priority': 'Prioridad',
+        }
+        
 
     
