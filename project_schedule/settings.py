@@ -83,10 +83,7 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/postgres',
-        conn_max_age=600
-    )
+    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
