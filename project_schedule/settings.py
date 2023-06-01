@@ -135,10 +135,7 @@ if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
     
 LOGIN_URL = '/signin'
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    "/var/www/static/",
-]
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
