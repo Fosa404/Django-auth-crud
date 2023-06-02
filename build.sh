@@ -3,10 +3,6 @@
 set -o errexit
 
 # poetry install
-<<<<<<< HEAD
-# pip install -r requirements.txt
-=======
->>>>>>> user-auth
 pipenv install
 
 python manage.py collectstatic --no-input
