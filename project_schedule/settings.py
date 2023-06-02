@@ -83,6 +83,7 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
+<<<<<<< HEAD
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "schedule",
@@ -91,6 +92,15 @@ DATABASES = {
         "HOST": "127.0.0.1",
         "PORT": "5432",
     }
+=======
+    "default": dj_database_url.config(conn_max_age=600) if "DATABASE_URL" in os.environ
+    else {"ENGINE": "django.db.backends.postgresql",
+          "NAME": "schedule",
+          "USER": "postgres",
+          "PASSWORD": "regimiento774",
+          "HOST": "127.0.0.1",
+          "PORT": "5432",}
+>>>>>>> user-auth
 }
 
 
@@ -130,10 +140,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+<<<<<<< HEAD
 STATICFILES_DIRS = [
+=======
+
+if 'RENDER' in os.environ:    # Tell Django to copy statics to the `staticfiles` directory
+    # in your application directory on Render.
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Turn on WhiteNoise storage backend that takes care of compressing static files
+    # and creating unique names for each version so they can safely be cached forever.
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    STATICFILES_DIRS = [
+>>>>>>> user-auth
     BASE_DIR / "static",
     "/var/www/static/",
 ]
+    
+LOGIN_URL = '/signin'
+
+
 
 # if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
 #     # in your application directory on Render.
