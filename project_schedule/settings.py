@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -83,10 +83,13 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    "default": dj_database_url.config(
-        default='postgresql://postgres:postgres@localhost:5432/postgres',
-        conn_max_age=600
-    )
+    "default": dj_database_url.config(conn_max_age=600) if "DATABASE_URL" in os.environ
+    else {"ENGINE": "django.db.backends.postgresql",
+          "NAME": "schedule",
+          "USER": "postgres",
+          "PASSWORD": "regimiento774",
+          "HOST": "127.0.0.1",
+          "PORT": "5432",}
 }
 
 
@@ -125,20 +128,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
+
+if 'RENDER' in os.environ:    # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-    
-LOGIN_URL = '/signin'
-
-STATICFILES_DIRS = [
+else:
+    STATICFILES_DIRS = [
     BASE_DIR / "static",
     "/var/www/static/",
 ]
+    
+LOGIN_URL = '/signin'
+
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
