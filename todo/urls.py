@@ -1,5 +1,8 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', views.index, name="todo"),
@@ -8,4 +11,4 @@ urlpatterns = [
     path('create/', views.create, name="todo_create"),
     path('delete/<int:id>/', views.delete, name="todo_delete"),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
