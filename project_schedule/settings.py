@@ -106,12 +106,13 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 DATABASES = {
 
     "default": dj_database_url.config(conn_max_age=600) if "DATABASE_URL" in os.environ
-    else {"ENGINE": "django.db.backends.postgresql",
+    else {'default':{"ENGINE": "django.db.backends.postgresql",
           "NAME": "schedule",
           "USER": "postgres",
           "PASSWORD": "regimiento774",
           "HOST": "127.0.0.1",
           "PORT": "5432",}
+          }
 }
 
 
@@ -150,7 +151,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
