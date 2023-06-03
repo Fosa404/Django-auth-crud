@@ -13,8 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-import mimetypes
-mimetypes.add_type("text/css", ".css", True)
+
 
 LOGGING = {
     "version": 1,
@@ -48,7 +47,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -108,14 +107,14 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 DATABASES = {
 
     "default": dj_database_url.config(conn_max_age=600) if "DATABASE_URL" in os.environ
-    else {'default':{"ENGINE": "django.db.backends.postgresql",
+    else {"ENGINE": "django.db.backends.postgresql",
           "NAME": "schedule",
           "USER": "postgres",
           "PASSWORD": "regimiento774",
           "HOST": "127.0.0.1",
           "PORT": "5432",}
           }
-}
+
 
 
 
@@ -155,7 +154,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if  DEBUG:
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'project_schedule.storage.WhiteNoiseStaticFilesStorage'
+else:
+    STATICFILES_DIRS = [
+    BASE_DIR / "static"]
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'project_schedule.storage.WhiteNoiseStaticFilesStorage'
 
