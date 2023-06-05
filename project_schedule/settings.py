@@ -159,10 +159,12 @@ STATIC_URL = 'static/'
 
 if not DEBUG:
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    # STATICFILES_STORAGE = 'project_schedule.storage.WhiteNoiseStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 else:
     STATICFILES_DIRS = [
     BASE_DIR / "static"]
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'project_schedule.storage.WhiteNoiseStaticFilesStorage'
    
     
 LOGIN_URL = '/signin'
