@@ -24,10 +24,10 @@ class SingupForm(UserCreationForm):
         if password1 and password2 and password1 != password2:
             raise ValidationError("las contraseñas no coinciden")
         
-        elif re.search(r'[A-Z]', password1) is None:
+        elif re.search(r'[A-Z]', password1) is None: #comprueba mayúsculas
             raise ValidationError("La contraseña debe contener al menos 1 mayus")
         
-        elif re.search(r'[0-9]', password1) is None:
+        elif re.search(r'[0-9]', password1) is None: #comprueba números 
             raise ValidationError("La contraseña debe contener al menos 1 número")
         
         return password2

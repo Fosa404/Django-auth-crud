@@ -13,31 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
-import mimetypes
 
-mimetypes.add_type("text/css", ".css", True)
-
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
-        },
-    },
-    "root": {
-        "handlers": ["console"],
-        "level": "WARNING",
-    },
-    "loggers": {
-        "django": {
-            "handlers": ["console"],
-            "level": "DEBUG",
-            "propagate": True,
-        },
-    },
-}
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -108,8 +84,10 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-
+    #entorno producción
     "default": dj_database_url.config(conn_max_age=600) if "DATABASE_URL" in os.environ
+    
+    #entorno desarrollo
     else {"ENGINE": "django.db.backends.postgresql",
           "NAME": "schedule",
           "USER": "postgres",
@@ -158,31 +136,16 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 if not DEBUG:
+    #producción
     STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 else:
-    STATICFILES_DIRS = [
-    BASE_DIR / "static"]
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'project_schedule.storage.WhiteNoiseStaticFilesStorage'
+    #entorno desarrollo
+    STATICFILES_DIRS = [BASE_DIR / "static"]
    
     
 LOGIN_URL = '/signin'
-
-
-
-# if not DEBUG:    # Tell Django to copy statics to the `staticfiles` directory
-#     # in your application directory on Render.
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-#     # Turn on WhiteNoise storage backend that takes care of compressing static files
-#     # and creating unique names for each version so they can safely be cached forever.
-#     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-    
-LOGIN_URL = '/signin'
-
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -8,18 +8,17 @@ from django.contrib.auth.decorators import login_required
 
 def index(request, letter = None):
     if request.user.is_authenticated:
-    # user_contacts = Contact.objects.filter(user=request.user)
-        if letter != None:
+        if letter != None: # busca contacto por inicial
             contacts = Contact.objects.filter(name__istartswith=letter, user=request.user)
         else:
+            #busca contacto por barra de busqueda. Si no hay valor en form de búsqueda obtiene todos los contactos de user
             contacts = Contact.objects.filter(name__contains=request.GET.get('search', ''), user=request.user)
-            print(contacts)
         context = {
 
             'contacts': contacts
         }
         return render (request, 'contact/index.html', context)
-    return redirect('index')
+    return redirect('index') # si user no autenticado rediraccionar a "/"
 
 @login_required
 def view(request,id):
@@ -34,7 +33,7 @@ def view(request,id):
 def edit(request, id):
     contact = Contact.objects.get(id=id)
     if request.method == 'GET':
-       
+       #renderizar form de edición con datos del contacto
        form = ContacForm(instance=contact)
        context = {
            'form': form,
@@ -43,7 +42,7 @@ def edit(request, id):
        
        return render(request, 'contact/edit.html', context)
     
-    if request.method == 'POST':
+    if request.method == 'POST': # actualiza contacto con datos nuevos
         form = ContacForm(request.POST, instance = contact)
         form.save()
         context = {
@@ -68,7 +67,7 @@ def create(request):
         if form.is_valid:
             try:
                 new_contact = form.save(commit=False)
-                new_contact.user = request.user
+                new_contact.user = request.user #asignar usuario logueado al nuevo contacto antes del commit
                 new_contact.save()
                 return redirect("contact")
             except ValueError:

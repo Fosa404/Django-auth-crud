@@ -6,7 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 def index(request):
     if request.user.is_authenticated:
-        todos = Todo.objects.filter(title__contains=request.GET.get('search', ''), user=request.user)
+        todos = Todo.objects.filter(title__contains=request.GET.get('search', ''), user=request.user) 
+        #obtener tareas por barrra de búsqueda. Si form búsqueda no contiene valor obtiene todas las tareas
         context = {
             
             'todos': todos
@@ -67,7 +68,7 @@ def create(request):
         if form.is_valid():
             try:
                 new_task = form.save(commit=False)
-                new_task.user = request.user
+                new_task.user = request.user # asignar usuario logueado a la tarea creada antes de commit
                 new_task.save()
                 return redirect('todo')
             except ValueError:
