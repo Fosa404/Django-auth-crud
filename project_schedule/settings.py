@@ -91,7 +91,7 @@ DATABASES = {
     else {"ENGINE": "django.db.backends.postgresql",
           "NAME": "schedule",
           "USER": "postgres",
-          "PASSWORD": "regimiento774",
+          "PASSWORD": "****",
           "HOST": "127.0.0.1",
           "PORT": "5432",}
           }
